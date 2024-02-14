@@ -13,7 +13,7 @@ class Listener {
       const playlist = await this._playlistService.getPlaylistById(playlistId)
       const songs = await this._playlistService.getSongsByPlaylistId(playlistId)
 
-      const playlistSongs = { ...playlist, songs }
+      const playlistSongs = { playlist: { ...playlist, songs } }
 
       const result = await this._mailSender.sendEmail(targetEmail, JSON.stringify(playlistSongs))
       console.log(result)
